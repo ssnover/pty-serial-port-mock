@@ -1,0 +1,4 @@
+# pty-experiment
+A common use case in Linux-based embedded systems is to have a Linux operating system running an application process that's not real-time sensitive that talks to a bare metal system that is running real-time sensitive tasks. When it comes time to test applications like this, it becomes necessary to fake data sent to/from a serial port in some way. In order to do this without running modified application code, pseudo-terminals can be used.
+
+In this repo, a Rust binary creates a pseudo-terminal and symlinks it to `/tmp/ttyuartmock`. This establishes a mocked serial port that another application can read and write to as if it was a regular serial port. In this case, a Python script attaches to the serial port through the symlink, writes some data, and reads the data that was echoed back.
